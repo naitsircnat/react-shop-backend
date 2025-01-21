@@ -2,14 +2,14 @@ const pool = require("../database");
 
 async function getAllProducts() {
   const [rows] = await pool.query(
-    "SELECT name, CAST(price AS DOUBLE) AS price, image * FROM products"
+    "SELECT name, CAST(price AS DOUBLE) AS price, image FROM products"
   );
   return rows;
 }
 
 async function getProductById(id) {
   const [rows] = await pool.query(
-    "SELECT name, CAST(price AS DOUBLE) AS price, image * FROM products WHERE id = ?",
+    "SELECT name, CAST(price AS DOUBLE) AS price, image FROM products WHERE id = ?",
     [id]
   );
 
