@@ -1,14 +1,7 @@
-/*
-- Do all the "require"
-- create app
-- middleware
-- create test route
-- start server
-*/
-
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+const pool = require("./database.js");
 
 const app = express();
 
