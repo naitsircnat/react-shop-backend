@@ -34,3 +34,67 @@ async function getUserById(id) {
 
   return user;
 }
+
+async function createUser({
+  name,
+  email,
+  password,
+  country,
+  salutation,
+  marketingPreferences,
+}) {
+  if (
+    !email ||
+    !password ||
+    typeof email !== "string" ||
+    typeof password !== "string"
+  ) {
+    throw new Error("Invalid user details");
+  }
+
+  const connection = await pool.getConnection();
+
+  try {
+    await connection.beginTransaction();
+
+    const [userResult] = await connection.query(
+      "INSERT INTO users (name, email, password, country, salutation) VALUES (?, ?, ?, ?, ?)",
+      [name, email, password, country, salutation]
+    );
+
+    const id = userResult.insertId;
+
+    if (Array.isArray(marketingPreferences)) {
+      for (const pref of marketingPreferences) {
+        const [prefResult] = await connection.query(
+          "SELECT * FROM marketing_preferences WHERE preference=?",
+          [pref]
+        );
+
+        if (prefResult.length === 0) {
+          throw new Error(`Invalid marketing preference provided: ${pref}`);
+        }
+
+        const prefId = prefResult[0].id;
+
+        await connection.query(
+          "INSERT INTO user_marketing_preferences (user_id, preference_id) VALUES (?, ?)",
+          [id, prefId]
+        );
+      }
+    }
+    await connection.commit();
+
+    return id;
+  } catch (error) {
+    await connection.rollBack();
+    throw error;
+  } finally {
+    await connection.release();
+  }
+
+  /*
+  - Add in the marketing preferences
+  - 
+  */
+}
