@@ -98,3 +98,89 @@ async function createUser({
   - 
   */
 }
+
+async function updateUser(
+  id,
+  { name, email, password, country, salutation, marketingPreferences }
+) {
+  if (!id || typeof id !== "number") {
+    throw new Error("Invalid ID");
+  }
+
+  const connection = await pool.getConnection();
+
+  try {
+    await connection.beginTransaction();
+
+    await connection.query(
+      "UPDATE users SET name=?, email=?, password=?, country=?, salutation=? WHERE id=?",
+      [name, email, password, country, salutation, id]
+    );
+
+    await connection.query(
+      "DELETE FROM user_marketing_preferences WHERE user_id=?",
+      [id]
+    );
+
+    if (Array.isArray(marketingPreferences)) {
+      for (const pref of marketingPreferences) {
+        const [prefResult] = await connection.query(
+          "SELECT * FROM marketing_preferences WHERE preference=?",
+          [pref]
+        );
+
+        if (prefResult.length === 0) {
+          throw new Error(`Invalid marketing preference : ${pref}`);
+        }
+
+        const prefId = prefResult[0].id;
+
+        await connection.query(
+          "INSERT INTO user_marketing_preferences (user_id preference_id) VALUES(?,?)",
+          [id, prefId]
+        );
+      }
+    }
+
+    await connection.commit();
+  } catch (error) {
+    await connection.rollBack();
+    throw error;
+  } finally {
+    await connection.release();
+  }
+}
+
+async function deleteUser(id) {
+  if (!id || typeof id !== "number") {
+    throw new Error("Invalid ID");
+  }
+
+  const connection = await pool.getConnection();
+
+  try {
+    connection.beginTransaction();
+
+    await connection.query(
+      "DELETE FROM user_marketing_preferences WHERE ID=?",
+      [id]
+    );
+
+    await connection.query("DELETE FROM users WHERE id=?", [id]);
+
+    await connection.commit();
+  } catch (error) {
+    await connection.rollBack();
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
+
+module.exports = {
+  getUserByEmail,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+};
