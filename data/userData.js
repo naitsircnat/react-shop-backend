@@ -9,12 +9,12 @@ async function getUserByEmail(email) {
     const [rows] = await pool.query("SELECT * FROM users WHERE email=?", [
       email,
     ]);
+
+    return rows[0];
   } catch (error) {
     console.log(error);
     throw error;
   }
-
-  return rows[0];
 }
 
 async function getUserById(id) {
@@ -94,16 +94,11 @@ async function createUser({
 
     return id;
   } catch (error) {
-    await connection.rollBack();
+    await connection.rollback();
     throw error;
   } finally {
     await connection.release();
   }
-
-  /*
-  - Add in the marketing preferences
-  - 
-  */
 }
 
 async function updateUser(
@@ -143,7 +138,7 @@ async function updateUser(
         const prefId = prefResult[0].id;
 
         await connection.query(
-          "INSERT INTO user_marketing_preferences (user_id preference_id) VALUES(?,?)",
+          "INSERT INTO user_marketing_preferences (user_id, preference_id) VALUES(?,?)",
           [id, prefId]
         );
       }
@@ -151,7 +146,7 @@ async function updateUser(
 
     await connection.commit();
   } catch (error) {
-    await connection.rollBack();
+    await connection.rollback();
     throw error;
   } finally {
     await connection.release();
@@ -177,7 +172,7 @@ async function deleteUser(id) {
 
     await connection.commit();
   } catch (error) {
-    await connection.rollBack();
+    await connection.rollback();
     throw error;
   } finally {
     connection.release();

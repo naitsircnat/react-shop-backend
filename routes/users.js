@@ -6,18 +6,6 @@ const AuthenticateWithJwt = require("../middlewares/AuthenticateWithJwt");
 
 router.post("/register", async (req, res) => {
   try {
-    // const { name, email, password, country, salutation, marketingPreferences } =
-    //   req.body;
-
-    // const userId = await userServices.registerUser({
-    //   name,
-    //   email,
-    //   password,
-    //   country,
-    //   salutation,
-    //   marketingPreferences,
-    // });
-
     const userId = await userServices.registerUser(req.body);
 
     res.status(201).json({ message: "Registration successful", userId });
