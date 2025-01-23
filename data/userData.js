@@ -5,7 +5,14 @@ async function getUserByEmail(email) {
     throw new Error("Invalid email");
   }
 
-  const [rows] = await pool.query("SELECT * FROM users WHERE email=?", [email]);
+  try {
+    const [rows] = await pool.query("SELECT * FROM users WHERE email=?", [
+      email,
+    ]);
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 
   return rows[0];
 }
