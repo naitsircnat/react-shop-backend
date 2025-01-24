@@ -1,7 +1,7 @@
 const cartData = require("../data/cartData");
 
 async function getCartContents(userId) {
-  await cartData.getCart(userId);
+  return await cartData.getCart(userId);
 }
 
 async function updateCartContents(userId, newCartContents) {

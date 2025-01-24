@@ -10,7 +10,7 @@ async function getCart(userId) {
 }
 
 async function updateCart(userId, cartItems) {
-  const connection = pool.getConnection();
+  const connection = await pool.getConnection();
 
   try {
     await connection.beginTransaction();
@@ -19,21 +19,21 @@ async function updateCart(userId, cartItems) {
 
     for (let item of cartItems) {
       await pool.query(
-        "INSERT INTO cart_items user_id, product_id, quantity VALUES(?, ?, ?)",
+        "INSERT INTO cart_items (user_id, product_id, quantity) VALUES(?, ?, ?)",
         [userId, item.product_id, item.quantity]
       );
     }
 
     await connection.commit();
   } catch (error) {
-    connection.rollback();
+    await connection.rollback();
     throw error;
   } finally {
-    connection.release();
+    await connection.release();
   }
 }
 
-modules.exports = {
+module.exports = {
   getCart,
   updateCart,
 };
