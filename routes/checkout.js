@@ -6,9 +6,9 @@ const checkoutService = require("../services/checkoutServices");
 
 router.post("/", userAuth, async (req, res) => {
   try {
-    const session = checkoutService.checkout(req.userId);
+    const session = await checkoutService.checkout(req.userId);
 
-    return session;
+    res.json(session);
   } catch (error) {
     res.status(500).json({ "error message": error.message });
   }
