@@ -19,7 +19,7 @@ async function createOrder(userId, orderItems) {
       0
     );
 
-    const [result] = connection.query(
+    const [result] = await connection.query(
       "INSERT INTO orders (total, user_id) VALUES (?,?)",
       [total, userId]
     );
@@ -28,7 +28,7 @@ async function createOrder(userId, orderItems) {
 
     for (let item of orderItems) {
       await connection.query(
-        "INSERT INTO order_items (product_id, quantity, orderId) VALUES (?,?,?)",
+        "INSERT INTO order_items (product_id, quantity, order_id) VALUES (?,?,?)",
         [item.product_id, item.quantity, orderId]
       );
     }
@@ -65,7 +65,7 @@ async function updateOrderStatus(order_id, status) {
 }
 
 async function updateOrderSessionId(order_id, session_id) {
-  await pool.query("UPDATE orders SET checkout_session_id=? WHERE order_id=?", [
+  await pool.query("UPDATE orders SET checkout_session_id=? WHERE id=?", [
     session_id,
     order_id,
   ]);

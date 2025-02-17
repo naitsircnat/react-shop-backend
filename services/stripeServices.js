@@ -22,6 +22,8 @@ function createLineItems(orderItems) {
 async function createCheckoutSession(userId, orderItems, orderId) {
   const lineItems = createLineItems(orderItems);
 
+  console.log(lineItems);
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: lineItems,
@@ -33,5 +35,13 @@ async function createCheckoutSession(userId, orderItems, orderId) {
       orderId: orderId,
     },
   });
+
+  console.log(session);
+
   return session;
 }
+
+module.exports = {
+  createCheckoutSession,
+  createLineItems,
+};

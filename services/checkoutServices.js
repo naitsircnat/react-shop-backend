@@ -1,10 +1,3 @@
-/*
--imports
--checkout - need userId, Items, orderId
---return session
--export 
-*/
-
 const cartService = require("./cartServices");
 const orderService = require("./orderServices");
 const stripeService = require("./stripeServices");
