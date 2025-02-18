@@ -25,7 +25,7 @@ router.post(
         if (session.metadata && session.metadata.orderId) {
           await orderServices.updateOrderStatus(
             session.metadata.orderId,
-            "Processing"
+            "processing"
           );
         }
         break;

@@ -6,6 +6,7 @@ const productsRouter = require("./routes/products");
 const usersRouter = require("./routes/users");
 const cartRouter = require("./routes/cart");
 const checkoutRouter = require("./routes/checkout");
+const stripeRouter = require("./routes/stripe");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use("/api/products", productsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/checkout", checkoutRouter);
+app.use("/api/stripe", stripeRouter);
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello world!" });
