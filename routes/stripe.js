@@ -1,3 +1,6 @@
+const express = require("express");
+const router = express.Router();
+
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const orderServices = require("../services/orderServices");
 
@@ -36,3 +39,5 @@ router.post(
     res.json({ received: true });
   }
 );
+
+module.exports = router;
