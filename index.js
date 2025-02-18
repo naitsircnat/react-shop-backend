@@ -10,13 +10,12 @@ const stripeRouter = require("./routes/stripe");
 
 const app = express();
 
-app.use(express.json());
 app.use(cors());
 
-app.use("/api/products", productsRouter);
-app.use("/api/users", usersRouter);
-app.use("/api/cart", cartRouter);
-app.use("/api/checkout", checkoutRouter);
+app.use("/api/products", express.json(), productsRouter);
+app.use("/api/users", express.json(), usersRouter);
+app.use("/api/cart", express.json(), cartRouter);
+app.use("/api/checkout", express.json(), checkoutRouter);
 app.use("/api/stripe", stripeRouter);
 
 app.get("/", (req, res) => {
