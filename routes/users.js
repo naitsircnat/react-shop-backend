@@ -21,7 +21,7 @@ router.post("/login", async (req, res) => {
     const user = await userServices.loginUser(email, password);
 
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "2h",
     });
 
     res.json({ message: "Login successful", token, user_id: user.id });
@@ -65,6 +65,18 @@ router.get("/me", AuthenticateWithJwt, async (req, res) => {
     }
 
     res.json({ user });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get("/orders", AuthenticateWithJwt, async (req, res) => {
+  const userId = req.userId;
+
+  try {
+    const orders = await userServices.getUserOrders(userId);
+
+    res.json(orders);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

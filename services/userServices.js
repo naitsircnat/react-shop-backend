@@ -59,10 +59,15 @@ async function getUserDetailsById(id) {
   return userData.getUserById(id);
 }
 
+async function getUserOrders(id) {
+  return userData.getUserOrders(id);
+}
+
 module.exports = {
   registerUser,
   loginUser,
   updateUserDetails,
   deleteUserAccount,
   getUserDetailsById,
+  getUserOrders,
 };

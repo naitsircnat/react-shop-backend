@@ -153,6 +153,16 @@ async function updateUser(
   }
 }
 
+async function getUserOrders(id) {
+  try {
+    const [orders] = await pool.query("SELECT * FROM orders WHERE id=?", [id]);
+    return orders;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 async function deleteUser(id) {
   if (!id || typeof id !== "number") {
     throw new Error("Invalid ID");
@@ -185,4 +195,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  getUserOrders,
 };
