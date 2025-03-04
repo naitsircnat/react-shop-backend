@@ -14,7 +14,16 @@ async function getProductById(id) {
   return rows[0];
 }
 
+async function getProductsByCategory(category) {
+  const [rows] = await pool.query("SELECT * FROM products WHERE category = ?", [
+    category,
+  ]);
+
+  return rows;
+}
+
 module.exports = {
   getAllProducts,
   getProductById,
+  getProductsByCategory,
 };

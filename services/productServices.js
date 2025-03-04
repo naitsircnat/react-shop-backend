@@ -14,7 +14,12 @@ async function getProductById(id) {
   return product;
 }
 
+async function getProductsByCategory(category) {
+  return await productData.getProductsByCategory(category);
+}
+
 module.exports = {
   getAllProducts,
   getProductById,
+  getProductsByCategory,
 };
