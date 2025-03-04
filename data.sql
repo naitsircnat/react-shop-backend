@@ -1,6 +1,6 @@
 use ecommerce;
 
-INSERT INTO products (name, price, description, image) VALUES
+INSERT INTO products (name, price, description, category, image) VALUES
 ('Ethiopian Sunrise', 15.99, "A bright and fruity coffee with floral notes.", "coffee", 'https://picsum.photos/id/20/300/200'),
 ('Colombian Gold', 12.99, "Smooth and balanced with a caramel finish.", "coffee", 'https://picsum.photos/id/1/300/200'),
 ('Sumatran Velvet', 17.99, "Bold and earthy with hints of dark chocolate", "coffee", 'https://picsum.photos/id/26/300/200'),
