@@ -153,33 +153,10 @@ async function updateUser(
   }
 }
 
-// async function getUserOrders(id) {
-//   try {
-//     const [orders] = await pool.query("SELECT * FROM orders WHERE id=?", [id]);
-//     return orders;
-//   } catch (error) {
-//     console.log(error);
-//     throw error;
-//   }
-// }
-
-// async function getUserOrders(id) {
-//   try {
-//     const [orders] = await pool.query(
-//       "SELECT orders.user_id, orders.id, product_id, quantity, total FROM orders JOIN order_items ON orders.id=order_items.order_id",
-//       [id]
-//     );
-//     return orders;
-//   } catch (error) {
-//     console.log(error);
-//     throw error;
-//   }
-// }
-
 async function getUserOrders(id) {
   try {
     const [orders] = await pool.query(
-      "SELECT orders.user_id, orders.id, name, product_id, quantity, total FROM orders JOIN order_items ON orders.id=order_items.order_id JOIN products ON order_items.product_id=products.id WHERE orders.user_id=?",
+      "SELECT orders.user_id, orders.id, name, product_id, quantity, status, total FROM orders JOIN order_items ON orders.id=order_items.order_id JOIN products ON order_items.product_id=products.id WHERE orders.user_id=?",
       [id]
     );
     return orders;
