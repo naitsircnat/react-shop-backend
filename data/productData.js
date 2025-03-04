@@ -14,10 +14,10 @@ async function getProductById(id) {
   return rows[0];
 }
 
-async function getProductsByCategory(category) {
-  const [rows] = await pool.query("SELECT * FROM products WHERE category = ?", [
-    category,
-  ]);
+async function getTeas() {
+  const [rows] = await pool.query(
+    "SELECT * FROM products WHERE category = 'tea'"
+  );
 
   return rows;
 }
@@ -25,5 +25,5 @@ async function getProductsByCategory(category) {
 module.exports = {
   getAllProducts,
   getProductById,
-  getProductsByCategory,
+  getTeas,
 };

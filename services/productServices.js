@@ -14,12 +14,12 @@ async function getProductById(id) {
   return product;
 }
 
-async function getProductsByCategory(category) {
-  return await productData.getProductsByCategory(category);
+async function getTeas() {
+  return await productData.getTeas();
 }
 
 module.exports = {
   getAllProducts,
   getProductById,
-  getProductsByCategory,
+  getTeas,
 };
