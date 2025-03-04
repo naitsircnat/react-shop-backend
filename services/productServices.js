@@ -18,8 +18,13 @@ async function getTeas() {
   return await productData.getTeas();
 }
 
+async function getCoffees() {
+  return await productData.getCoffees();
+}
+
 module.exports = {
   getAllProducts,
   getProductById,
   getTeas,
+  getCoffees,
 };

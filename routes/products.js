@@ -23,6 +23,15 @@ router.get("/tea", async (req, res) => {
   }
 });
 
+router.get("/coffee", async (req, res) => {
+  try {
+    const products = await productService.getCoffees();
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const product = await productService.getProductById(req.params.id);

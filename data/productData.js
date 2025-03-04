@@ -22,8 +22,17 @@ async function getTeas() {
   return rows;
 }
 
+async function getCoffees() {
+  const [rows] = await pool.query(
+    "SELECT * FROM products WHERE category = 'coffee'"
+  );
+
+  return rows;
+}
+
 module.exports = {
   getAllProducts,
   getProductById,
   getTeas,
+  getCoffees,
 };
