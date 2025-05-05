@@ -22,9 +22,19 @@ async function getCoffees() {
   return await productData.getCoffees();
 }
 
+async function getFeaturedCoffees() {
+  return await productData.getFeaturedCoffees();
+}
+
+async function getFeaturedTeas() {
+  return await productData.getFeaturedTeas();
+}
+
 module.exports = {
   getAllProducts,
   getProductById,
   getTeas,
   getCoffees,
+  getFeaturedCoffees,
+  getFeaturedTeas,
 };

@@ -30,9 +30,27 @@ async function getCoffees() {
   return rows;
 }
 
+async function getFeaturedCoffees() {
+  const [rows] = await pool.query(
+    "SELECT * FROM products WHERE category = 'coffee' LIMIT 4"
+  );
+
+  return rows;
+}
+
+async function getFeaturedTeas() {
+  const [rows] = await pool.query(
+    "SELECT * FROM products WHERE category = 'tea' LIMIT 4"
+  );
+
+  return rows;
+}
+
 module.exports = {
   getAllProducts,
   getProductById,
   getTeas,
   getCoffees,
+  getFeaturedCoffees,
+  getFeaturedTeas,
 };

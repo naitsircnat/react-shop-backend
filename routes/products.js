@@ -32,6 +32,24 @@ router.get("/coffee", async (req, res) => {
   }
 });
 
+router.get("/featured-coffee", async (req, res) => {
+  try {
+    const products = await productService.getFeaturedCoffees();
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get("/featured-tea", async (req, res) => {
+  try {
+    const products = await productService.getFeaturedTeas();
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const product = await productService.getProductById(req.params.id);
