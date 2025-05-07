@@ -12,7 +12,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://react-shop-backend-ru9u.onrender.com/",
+    origin: "https://react-shop-peach-nine.vercel.app/",
     credentials: true,
   })
 );
