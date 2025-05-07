@@ -10,7 +10,12 @@ const stripeRouter = require("./routes/stripe");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://react-shop-backend-ru9u.onrender.com/",
+    credentials: true,
+  })
+);
 
 app.use("/api/products", express.json(), productsRouter);
 app.use("/api/users", express.json(), usersRouter);
