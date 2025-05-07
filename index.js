@@ -10,12 +10,7 @@ const stripeRouter = require("./routes/stripe");
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "https://react-shop-peach-nine.vercel.app/",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use("/api/products", express.json(), productsRouter);
 app.use("/api/users", express.json(), usersRouter);
