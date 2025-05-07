@@ -1,6 +1,6 @@
--- CREATE DATABASE ecommerce;
+CREATE DATABASE ecommerce;
 
--- USE ecommerce;
+USE ecommerce;
 
 -- Products table
 CREATE TABLE products (

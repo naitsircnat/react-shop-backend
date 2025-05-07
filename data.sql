@@ -1,4 +1,4 @@
--- use ecommerce;
+use ecommerce;
 
 INSERT INTO products (name, price, description, category, image) VALUES
 ('Ethiopian Sunrise', 15.99, "A bright and fruity coffee with floral notes.", "coffee", 'products/coffee/sunrise.jpg'),
