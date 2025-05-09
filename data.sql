@@ -4,7 +4,7 @@ INSERT INTO products (name, price, description, category, image) VALUES
 ('Ethiopian Sunrise', 15.99, "A bright and fruity coffee with floral notes.", "coffee", 'products/coffee/sunrise.jpg'),
 ('Colombian Gold', 12.99, "Smooth and balanced with a caramel finish.", "coffee", 'products/coffee/gold.jpg'),
 ('Sumatran Velvet', 17.99, "Bold and earthy with hints of dark chocolate", "coffee", 'products/coffee/velvet.jpg'),
-('Brazilian Bliss', 14.99, "Rich and nutty with a creamy body.", "coffee", 'products/coffee/bliss.jpg'),
+('Brazilian Bliss', 14.99, "Rich, delicious and nutty with a creamy body.", "coffee", 'products/coffee/bliss.jpg'),
 ('Kenyan Dawn', 16.49, "Vibrant and juicy with notes of blackcurrant and citrus.", "coffee", 'products/coffee/dawn.jpg'),
 ('Guatemalan Reserve', 13.99, "Sweet and smooth with hints of cocoa and spice.", "coffee", 'products/coffee/reserve.jpg'),
 ('Costa Rican Cloud', 15.49, "Bright acidity with a clean, honeyed finish.", "coffee", 'products/coffee/cloud.jpg'),
