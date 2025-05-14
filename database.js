@@ -10,14 +10,27 @@ const mysql2 = require("mysql2/promise");
 //   queueLimit: 0,
 // });
 
+// const pool = mysql2.createPool({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   database: process.env.DB_NAME,
+//   password: process.env.DB_PASSWORD,
+//   port: process.env.DB_PORT,
+//   waitForConnections: true,
+//   connectionLimit: 5,
+//   queueLimit: 0,
+// });
+
+// FOR DEPLOYMENT USING RAILWAY
+
 const pool = mysql2.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  database: process.env.MYSQLDATABASE,
+  password: process.env.MYSQLPASSWORD,
+  port: process.env.MYSQLPORT,
   waitForConnections: true,
-  connectionLimit: 5,
+  connectionLimit: 10,
   queueLimit: 0,
 });
 
