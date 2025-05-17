@@ -1,7 +1,3 @@
--- CREATE DATABASE ecommerce;
-
--- USE ecommerce;
-
 -- Products table
 CREATE TABLE products (
   id INT AUTO_INCREMENT PRIMARY KEY,

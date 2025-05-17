@@ -1,5 +1,3 @@
--- use ecommerce;
-
 INSERT INTO products (name, price, description, category, image) VALUES
 ('Ethiopian Sunrise', 15.99, "A bright and fruity coffee with floral notes.", "coffee", 'products/coffee/sunrise.jpg'),
 ('Colombian Gold', 12.99, "Smooth and balanced with a caramel finish.", "coffee", 'products/coffee/gold.jpg'),
@@ -19,8 +17,8 @@ INSERT INTO products (name, price, description, category, image) VALUES
 ('Hibiscus Bloom', 12.49, "A tart and vibrant herbal tea with a deep crimson hue.", "tea", 'products/tea/hibiscus.jpg')
 ;
 
-INSERT INTO marketing_preferences (id, preference) VALUES (1, 'email');  -- Email Marketing
-INSERT INTO marketing_preferences (id, preference) VALUES (2, 'sms');    -- SMS Marketing
+INSERT INTO marketing_preferences (id, preference) VALUES (1, 'email');  
+INSERT INTO marketing_preferences (id, preference) VALUES (2, 'sms');    
 
 
 
