@@ -26,7 +26,7 @@ async function createCheckoutSession(userId, orderItems, orderId) {
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
-    success_url: `http://localhost:5173/success`,
+    success_url: `https://react-shop-flax-mu.vercel.app/success`,
     cancel_url: `https://www.yahoo.com`,
     metadata: {
       userId: userId,
